@@ -1,0 +1,7 @@
+*.meta
+obj
+Temp
+ProjectSettings
+.idea
+Library
+Packages
