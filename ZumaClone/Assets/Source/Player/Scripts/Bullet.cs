@@ -1,13 +1,14 @@
 ﻿using System;
+using Share;
 using UnityEngine;
 
 namespace Player.Scripts
 {
     public sealed class Bullet : MonoBehaviour, ICloneable
     {
-        [SerializeField] private MeshRenderer[] _meshes = null;
+        [SerializeField] private Renderer[] _sprites = null;
         [SerializeField] private float _speed = 10f;
-        private MeshRenderer _image = null;
+        private Renderer _image = null;
         private ParticleSystem _particles;
         private float _actualSpeed = 0f;
         
@@ -16,9 +17,9 @@ namespace Player.Scripts
 
         private void Start()
         {
-            var func = new Func<int, int>(i => i % _meshes.Length);
-            _image = Instantiate(_meshes[func(Type)]);
-            _image.transform.localScale = transform.localScale/2;
+            var func = new Func<int, int>(i => i % _sprites.Length);
+            _image = Instantiate(_sprites[func(Type)]);
+            _image.transform.localScale = transform.localScale/1.5f; // TODO Find depend of 1.5
         }
 
         private void DestroySelf()

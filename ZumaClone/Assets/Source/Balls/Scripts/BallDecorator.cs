@@ -7,20 +7,20 @@ namespace Balls.Scripts
     public class BallDecorator : MonoBehaviour
     {
         private Ball _ball = null;
-        [SerializeField] private MeshRenderer[] _meshes = null;
-        private MeshRenderer _image = null;
+        [SerializeField] private Renderer[] _sprites = null;
+        private Renderer _image = null;
         private ParticleSystem _particle;
-        public int Types => _meshes.Length;
+        public int Types => _sprites.Length;
         private float _rotationAngle = 0f;
 
         private void Start()
         {
             _ball = GetComponent<Ball>();
-            var func = new Func<int, int>(i => i % _meshes.Length);
-            _image = Instantiate(_meshes[func(_ball.Type)]);
+            var func = new Func<int, int>(i => i % _sprites.Length);
+            _image = Instantiate(_sprites[func(_ball.Type)]);
             _particle = _image.GetComponent<ParticleSystem>();
 
-            _image.transform.localScale = Vector3.one * (_ball.Size/2);
+            _image.transform.localScale = Vector3.one * (_ball.Size/1.5f); // TODO Find depend of 1.5
         }
 
         private void Update()
